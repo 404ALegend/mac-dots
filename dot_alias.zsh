@@ -185,12 +185,12 @@ _chezmoi_sync() {
     fi
 
     if [ -n "$("$chezmoi_command" git -- status --porcelain)" ]; then
-        if ! "$chezmoi_command" git add --all; then
+        if ! "$chezmoi_command" git -- add --all; then
             echo "Error: chezmoi git add failed."
             return 1
         fi
 
-        if ! "$chezmoi_command" git commit -m "Update chezmoi source"; then
+        if ! "$chezmoi_command" git -- commit -m "Update chezmoi source"; then
             echo "Error: chezmoi git commit failed."
             return 1
         fi
