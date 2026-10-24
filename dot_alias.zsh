@@ -176,37 +176,38 @@ function lg() {
   fi
 }
 
-_chezmoi_for_current_source() {
-    case "$PWD/" in
-        "$HOME/.local/share/chezmoi-personal/"*)
-            print -r -- chezmoi-personal
-            ;;
-        *)
-            print -r -- chezmoi
-            ;;
-    esac
-}
-
-cr() {
-    local chezmoi_command
-    chezmoi_command="$(_chezmoi_for_current_source)"
+_chezmoi_sync() {
+    local chezmoi_command="$1"
 
     if ! "$chezmoi_command" re-add; then
         echo "Error: chezmoi re-add failed."
         return 1
     fi
 
-    until "$chezmoi_command" git push; do
-        printf "Push failed. Retry? [Y/n] "
-        read -r answer
+    if [ -n "$("$chezmoi_command" git status --porcelain)" ]; then
+        if ! "$chezmoi_command" git add --all; then
+            echo "Error: chezmoi git add failed."
+            return 1
+        fi
 
-        case "$answer" in
-            [nN]*)
-                echo "Push cancelled."
-                return 1
-                ;;
-        esac
-    done
+        if ! "$chezmoi_command" git commit -m "Update chezmoi source"; then
+            echo "Error: chezmoi git commit failed."
+            return 1
+        fi
+    fi
+
+    if ! "$chezmoi_command" git push; then
+        echo "Error: chezmoi git push failed."
+        return 1
+    fi
+}
+
+cr() {
+    _chezmoi_sync chezmoi
+}
+
+crp() {
+    _chezmoi_sync chezmoi-personal
 }
 
 
