@@ -18,15 +18,22 @@ chezmoi init 404ALegend/mac-dots
 chezmoi apply
 ```
 
-The repository contains no identities, accounts, SSH configuration, encrypted files, or personal service configuration. Personal settings belong in the private `mac-dots-personal` overlay.
+The repository contains no identities, accounts, SSH configuration, encrypted files, or personal service configuration.
 
 ## Personal overlay
 
-A personal Mac can apply the private overlay after this base:
+On a personal Mac, initialize the private overlay after the public base:
 
 ```sh
-chezmoi apply -S "$HOME/.local/share/chezmoi-personal" \
-  -c "$HOME/.config/chezmoi/personal.toml"
+chezmoi init \
+  -S "$HOME/.local/share/chezmoi-personal" \
+  -C "$HOME/.config/chezmoi/personal.toml" \
+  --promptChoice "machineProfile=personal" \
+  404ALegend/mac-dots-personal
+
+chezmoi -S "$HOME/.local/share/chezmoi-personal" \
+  -c "$HOME/.config/chezmoi/personal.toml" \
+  apply
 ```
 
-No work Mac needs the private overlay.
+The private overlay supplies personal identities, encrypted files, and services. No work Mac needs it.
