@@ -1,0 +1,11 @@
+# Shared optional desktop tools. Use only where company policy permits.
+brew "displayplacer"
+brew "openssh"
+cask "font-maple-mono-nf"
+cask "ghostty"
+cask "google-chrome"
+cask "helium-browser"
+cask "obsidian"
+cask "spotify"
+cask "yaak"
+cask "zed"

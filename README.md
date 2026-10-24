@@ -20,6 +20,14 @@ chezmoi apply
 
 The repository contains no identities, accounts, SSH configuration, encrypted files, or personal service configuration.
 
+## Optional Homebrew bundle
+
+The public Brewfile contains shared desktop tools. Install only entries that company policy permits:
+
+```sh
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}" brew bundle --global
+```
+
 ## Personal overlay
 
 On a personal Mac, initialize the private overlay after the public base:
