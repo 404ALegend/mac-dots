@@ -1,0 +1,26 @@
+[metadata]
+name = "todo-comments"
+description = "Find TODO, FIXME, HACK, XXX, BUG, and WARN comments in project repositories"
+requirements = ["fd", "rg", "bat"]
+
+[source]
+command = '''fd -g .git -HL -t d -d 8 --prune "$HOME/Developer" --exec dirname '{}' | while IFS= read -r repo; do rg -n --color=always --glob '!node_modules' --glob '!vendor' --glob '!dist' --glob '!build' --glob '!target' --glob '!.git' '(TODO|FIXME|HACK|XXX|BUG|WARN):?' "$repo"; done || true'''
+ansi = true
+output = "{strip_ansi|split:\\::..2}"
+
+[preview]
+command = "bat -n --color=always --highlight-line '{strip_ansi|split:\\::1}' '{strip_ansi|split:\\::0}'"
+env = { BAT_THEME = "ansi" }
+offset = "{strip_ansi|split:\\::1}"
+
+[ui]
+preview_panel = { header = "{strip_ansi|split:\\::..2}" }
+
+[keybindings]
+enter = "actions:edit"
+
+[actions.edit]
+description = "Open file in editor at the comment"
+command = "${EDITOR:-nvim} '+{strip_ansi|split:\\::1}' '{strip_ansi|split:\\::0}'"
+shell = "bash"
+mode = "execute"
