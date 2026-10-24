@@ -1,6 +1,8 @@
 #!/bin/sh
 set -eu
 
+# Chezmoi reruns this script only after its contents change.
+
 if ! command -v mise >/dev/null 2>&1; then
   printf '%s\n' 'Skipping OMP plugins. Install Mise, then run chezmoi apply again.' >&2
   exit 0
