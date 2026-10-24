@@ -1,0 +1,65 @@
+# Shared, work-safe tool configuration.
+[tools]
+"aqua:dlvhdr/diffnav" = "latest"
+bat = "latest"
+betterleaks = "latest"
+bun = "latest"
+chezmoi = "latest"
+coreutils = "latest"
+delta = "latest"
+eza = "latest"
+fd = "latest"
+ffmpeg = "latest"
+fzf = "latest"
+gitleaks = "latest"
+jq = "latest"
+lazygit = "latest"
+neovim = "latest"
+node = "latest"
+oh-my-pi = { version = "latest", rename_exe = "omp" }
+python = "latest"
+ripgrep = "latest"
+starship = "latest"
+television = "latest"
+"github:joshmedeski/sesh" = "latest"
+tlrc = "latest"
+tmux = "latest"
+tree-sitter = "latest"
+uv = "latest"
+"github:raine/workmux" = "latest"
+"github:agavra/tuicr" = "latest"
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
+zoxide = "latest"
+
+# Heavy, project-local tools. Enable these only in a project configuration.
+# dotnet = "latest"
+# duckdb = "latest"
+# elixir = "latest"
+# erlang = "latest"
+# go = "latest"
+# java = "latest"
+# kotlin = { version = "latest", asset_pattern = "kotlin-compiler-*.zip", bin_path = "kotlinc/bin" }
+# lazydocker = "latest"
+# podman = { version = "latest", matching = "podman-remote" }
+# postgres = "latest"
+# rust = "latest"
+# zig = "latest"
+
+[settings]
+always_keep_download = false
+always_keep_install = false
+trusted_config_paths = ["~/Developer/"]
+verbose = false
+http_timeout = "30s"
+jobs = 4
+raw = false
+yes = false
+not_found_auto_install = true
+task.output = "prefix"
+paranoid = false
+env_file = ".env"
+experimental = true
+status = { missing_tools = "if_other_versions_installed", show_env = false, show_tools = false }
+
+[settings.pipx]
+uvx = true

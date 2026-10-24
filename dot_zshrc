@@ -1,0 +1,158 @@
+
+# Auto-start tmux
+# if command -v tmux &>/dev/null && [ -z "$TMUX" ] && [[ $- == *i* ]]; then
+#   tmux attach-session -t main 2>/dev/null || tmux new-session -s main
+# fi
+
+# Set directory for zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [ ! -d $ZINIT_HOME ]; then 
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+
+# Options
+zstyle ':completion:*' menu select
+zstyle ':completion:*' special-dirs true
+setopt autocd
+
+
+# VIM mode
+bindkey -v
+bindkey -M viins "^?" backward-delete-char
+
+
+#Sourced files
+source "${ZINIT_HOME}/zinit.zsh"
+[ -f "$HOME/.alias.zsh" ] && source "$HOME/.alias.zsh"
+#
+
+# Hooks
+chpwd () {
+    eza -1   --icons=auto
+}
+
+# ZSH plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+# zinit load atuinsh/atuin
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+export HIST_IGNORE_PATTERNS='echo *\| *jq*'
+
+# Completion styling
+zstyle '*:completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle '*:completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle '*:completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+
+# Snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::command-not-found
+
+
+# Load completions
+autoload -Uz compinit && compinit -u
+zinit cdreplay -q
+
+
+# Select a zoxide directory with Television, then cd in the current shell.
+tv-zoxide() {
+    local dir
+
+    dir="$(command tv zoxide)" || return
+
+    if [[ -n "$dir" ]]; then
+        builtin cd -- "$dir"
+    fi
+}
+
+# Bare `tv` is the zoxide cd picker; `tv <args>` still calls Television normally.
+tv() {
+    if (( $# == 0 )); then
+        tv-zoxide
+    else
+        command tv "$@"
+    fi
+}
+
+# Select and connect to a Sesh session with Alt-s.
+sesh-sessions() {
+    {
+        exec </dev/tty
+        exec <&1
+        sesh picker
+        zle-cursor-shape
+        zle reset-prompt >/dev/null 2>&1 || true
+    }
+}
+zle -N sesh-sessions
+bindkey -M emacs '\es' sesh-sessions
+bindkey -M vicmd '\es' sesh-sessions
+bindkey -M viins '\es' sesh-sessions
+
+
+# Set the cursor shape after Zsh starts its line editor.
+zle-cursor-shape() {
+    case "$KEYMAP" in
+        vicmd) printf '\e[2 q' ;;
+        *) printf '\e[5 q' ;;
+    esac
+}
+zle -N zle-line-init zle-cursor-shape
+zle -N zle-keymap-select zle-cursor-shape
+
+# Replace alias from /usr/share/oh-my-zshlib/directories.zsh with =>
+alias  l='eza -lh  --icons=auto' # long list
+alias ls='eza -1   --icons=auto' # short list
+alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
+alias ld='eza -lhD --icons=auto' # long list dirs
+
+# PATH modifications must run before mise so mise-managed tools stay first.
+
+# Mise must run after PATH modifications and before shell integrations for mise tools.
+eval "$(mise activate zsh)"
+
+# Evals
+if [[ -t 0 ]] && command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
+if [[ "$TERM" != "dumb" ]] && command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+if [[ -t 0 ]] && command -v tv >/dev/null 2>&1; then
+  eval "$(tv init zsh)"
+fi
+if [[ -t 0 ]] && command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+fi
+
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+
+
+# Docker Desktop shell completions
+if [[ -d "$HOME/.docker/completions" ]]; then
+  fpath=("$HOME/.docker/completions" $fpath)
+fi
+

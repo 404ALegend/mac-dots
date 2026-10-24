@@ -1,0 +1,79 @@
+# tmux-which-key opens with the additive prefix + W binding.
+# Prefix + Space keeps tmux's default next-layout binding.
+command_alias_start_index: 200
+keybindings:
+  prefix_table: W
+title:
+  style: align=centre,bold
+  prefix: tmux
+  prefix_style: fg=green,align=centre,bold
+position:
+  x: R
+  y: P
+custom_variables:
+  - name: log_info
+    value: '#[fg=green,italics] [info]#[default]#[italics]'
+macros:
+  - name: reload-config
+    commands:
+      - display "#{log_info} Loading config... "
+      - source-file $HOME/.config/tmux/tmux.conf
+      - display -p "\n\n... Press ENTER to continue"
+items:
+  - name: +Keys
+    key: '?'
+    command: list-keys -N
+  - name: +Sessions
+    key: s
+    menu:
+      - name: Choose
+        key: s
+        command: choose-tree -Zs
+      - name: Sesh picker
+        key: K
+        command: 'display-popup -E -w 50% -h 90% -d "#{pane_current_path}" "sesh picker"'
+      - name: Last Sesh session
+        key: L
+        command: 'run-shell "sesh last"'
+  - name: +Windows
+    key: w
+    menu:
+      - name: Choose
+        key: w
+        command: choose-tree -Zw
+      - name: Previous
+        key: p
+        command: previous-window
+      - name: Next
+        key: n
+        command: next-window
+      - name: New
+        key: c
+        command: 'neww -c #{pane_current_path}'
+      - name: Split horizontal
+        key: /
+        command: 'splitw -h -c #{pane_current_path}'
+      - name: Split vertical
+        key: '-'
+        command: 'splitw -v -c #{pane_current_path}'
+  - name: +Panes
+    key: p
+    menu:
+      - name: Choose
+        key: p
+        command: displayp -d 0
+      - name: Left
+        key: h
+        command: selectp -L
+      - name: Down
+        key: j
+        command: selectp -D
+      - name: Up
+        key: k
+        command: selectp -U
+      - name: Right
+        key: l
+        command: selectp -R
+      - name: Zoom
+        key: z
+        command: resizep -Z

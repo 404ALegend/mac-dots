@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+
+if ! command -v mise >/dev/null 2>&1; then
+  printf '%s\n' 'Skipping OMP plugins. Install Mise, then run chezmoi apply again.' >&2
+  exit 0
+fi
+
+mise install oh-my-pi
+mise reshim
+mise exec oh-my-pi -- omp plugin install \
+  npm:@plannotator/pi-extension@0.27.14 \
+  agent-simple-english@0.8.0

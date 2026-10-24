@@ -1,0 +1,5 @@
+# uv
+export PATH="$HOME/.local/bin:$PATH"
+
+# OMP config root
+export PI_CONFIG_DIR=".config/omp"

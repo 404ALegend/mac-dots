@@ -1,0 +1,33 @@
+#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
+
+# Keep session data fast and names clear in the picker.
+cache = true
+dir_length = 2
+separator_aware = true
+blacklist = ["^scratch$", "^_"]
+sort_order = ["tmux", ["config", "zoxide"]]
+
+[tui]
+show_icons = true
+show_windows = true
+prompt = "⚡ "
+placeholder = "Choose a session"
+preview = true
+preview_border = "none"
+
+[default_session]
+preview_command = "eza --all --git --icons --color=always {}"
+
+[[session]]
+name = "developer"
+path = "~/Developer"
+alias = "dev"
+
+[[session]]
+name = "dotfiles"
+path = "~/.local/share/chezmoi"
+alias = "dot"
+
+[[wildcard]]
+pattern = "~/Developer/*"
+icon = "󰉋"

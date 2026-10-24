@@ -1,0 +1,37 @@
+[core]
+    excludesfiles = ~/.gitignore
+    editor = "nvim"
+    pager = delta
+    hooksPath = ~/.config/git/hooks
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[column]
+    ui = "auto"
+
+[gpg]
+    format = ssh
+
+[tag]
+    gpgSign = true
+
+[alias]
+    ac = !git add -A && git commit -m
+    ga = add .
+    gc = commit -m
+    gs = status -s
+    lg = log --graph --oneline --all --decorate
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    dark = true
+
+[merge]
+    conflictStyle = zdiff3

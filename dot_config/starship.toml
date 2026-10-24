@@ -1,0 +1,124 @@
+# version: 1.0.0
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+continuation_prompt = "[▸▹ ](dimmed white)"
+
+format = """
+$character\
+$directory\
+$git_branch\
+$git_status\
+$git_metrics \
+"""
+
+right_format = """
+$git_state\
+$git_commit\
+$bun\
+$c\
+$cpp\
+$dotnet\
+$elixir\
+$golang\
+$lua\
+$nodejs\
+$ocaml\
+$php\
+$python\
+$rust\
+$zig\
+$conda\
+$cmd_duration\
+"""
+
+[fill]
+symbol = ' '
+
+[character]
+format = "$symbol "
+success_symbol = "[◎](bold italic bright-yellow)"
+error_symbol = "[◎](bold italic red)"
+
+[sudo]
+format = "[$symbol]($style)"
+style = "bold italic bright-purple"
+disabled = false
+
+[directory]
+truncation_length = 2
+use_os_path_sep = true
+style = "blue"
+format = '[$path]($style)[$read_only]($read_only_style)'
+repo_root_style = 'bold blue'
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path](italic blue)[$read_only]($read_only_style)'
+
+[cmd_duration]
+format = " [◄ $duration ](italic white)"
+
+[git_branch]
+format = " [$symbol$branch(:$remote_branch)]($style)"
+style = "green"
+always_show_remote = true
+truncation_symbol = "⋯"
+truncation_length = 15
+only_attached = true
+
+[git_commit]
+only_detached = true
+format = '[\($hash$tag\)]($style)'
+style = "green"
+
+[git_metrics]
+format = '( [▴$added]($added_style))( [▿$deleted]($deleted_style))'
+added_style = 'italic dimmed green'
+deleted_style = 'italic dimmed red'
+ignore_submodules = true
+disabled = false
+
+[git_status]
+style = "bold italic bright-blue"
+format = "( [$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed]($style))"
+
+[git_state]
+cherry_pick = "cherry-pick"
+format = ' \([$state($progress_current/$progress_total)]($style)\)'
+style = "dimmed yellow"
+
+[lua]
+format = " [lua](italic) [${symbol}${version}]($style)"
+version_format = "${raw}"
+style = "bold bright-yellow"
+
+[nodejs]
+format = " [node](italic) [$version](bold bright-green)"
+version_format = "${raw}"
+detect_files = ["package-lock.json", "yarn.lock"]
+detect_folders = ["node_modules"]
+detect_extensions = []
+
+[python]
+format = " [${symbol}${version}]($style)"
+version_format = "${raw}"
+style = "bold bright-yellow"
+
+[rust]
+format = " [rs](italic) [$symbol$version]($style)"
+version_format = "${raw}"
+style = "bold red"
+
+[c]
+format = " [$symbol($version(-$name))]($style)"
+
+[cpp]
+format = " [$symbol($version(-$name))]($style)"
+
+[conda]
+format = " conda [$symbol$environment]($style)"
+
+[elixir]
+format = " exs [$symbol $version OTP $otp_version ]($style)"
+
+[golang]
+format = " go [$symbol($version )]($style)"
+

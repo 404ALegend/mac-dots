@@ -1,0 +1,21 @@
+nerdfont: true
+worktree_dir: ~/.workmux/{project}
+mode: session
+window_prefix: "{project}-"
+agent: omp
+window_placement: after_current
+merge_strategy: rebase
+merge_keep: false
+
+dashboard:
+  close_on_jump: false
+
+windows:
+  - name: shell
+    panes:
+      - focus: false
+
+  - name: agent
+    panes:
+      - command: <agent>
+        focus: true
