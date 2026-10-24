@@ -176,13 +176,27 @@ function lg() {
   fi
 }
 
+_chezmoi_for_current_source() {
+    case "$PWD/" in
+        "$HOME/.local/share/chezmoi-personal/"*)
+            print -r -- chezmoi-personal
+            ;;
+        *)
+            print -r -- chezmoi
+            ;;
+    esac
+}
+
 cr() {
-    if ! chezmoi re-add; then
+    local chezmoi_command
+    chezmoi_command="$(_chezmoi_for_current_source)"
+
+    if ! "$chezmoi_command" re-add; then
         echo "Error: chezmoi re-add failed."
         return 1
     fi
 
-    until chezmoi git push; do
+    until "$chezmoi_command" git push; do
         printf "Push failed. Retry? [Y/n] "
         read -r answer
 
