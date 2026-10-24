@@ -1,5 +1,5 @@
 nerdfont: true
-worktree_dir: ~/.workmux/{project}
+worktree_dir: .worktrees
 mode: session
 window_prefix: "{project}-"
 agent: omp
@@ -11,6 +11,11 @@ dashboard:
   close_on_jump: false
 
 windows:
+  - name: dashboard
+    panes:
+      - command: workmux dashboard -t worktrees
+        focus: false
+
   - name: shell
     panes:
       - focus: false

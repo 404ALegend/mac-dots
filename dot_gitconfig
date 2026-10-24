@@ -1,5 +1,5 @@
 [core]
-    excludesfiles = ~/.gitignore
+    excludesfile = ~/.gitignore
     editor = "nvim"
     pager = delta
     hooksPath = ~/.config/git/hooks
