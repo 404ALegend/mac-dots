@@ -2,7 +2,7 @@
 # scan_timeout = 100
 # command_timeout = 300
 follow_symlinks = false
-add_newline = false
+add_newline = true
 palette = "custom1" # Catppuccin Mocha
 
 format = """
