@@ -19,6 +19,9 @@
 [tag]
     gpgSign = true
 
+[include]
+    path = ~/.gitconfig-personal
+
 [alias]
     ac = !git add -A && git commit -m
     ga = add .
