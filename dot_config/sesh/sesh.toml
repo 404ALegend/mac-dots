@@ -24,9 +24,16 @@ path = "~/Developer"
 alias = "dev"
 
 [[session]]
-name = "dotfiles"
+name = "base dotfiles"
 path = "~/.local/share/chezmoi"
 alias = "dot"
+
+
+[[session]]
+name = "personal dotfiles"
+path = "~/.local/share/chezmoi-personal/"
+alias = "pdot"
+
 
 [[wildcard]]
 pattern = "~/Developer/*"

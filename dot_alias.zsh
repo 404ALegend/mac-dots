@@ -28,7 +28,7 @@ alias lomp='omp --no-session --no-skills --no-rules --no-extensions --tools=read
 alias n='nvim .'
 alias py='python3'
 alias ta='tmux attach -t'
-alias td='tmux detach'
+alias dt='tmux detach'
 alias tk='tmux kill-session -t'
 alias tnw='tmux new-session -s'
 alias tp='tuicr pr'
