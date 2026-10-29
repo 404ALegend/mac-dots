@@ -3,13 +3,17 @@ set -eu
 
 # Chezmoi reruns this script only after its contents change.
 
+mkdir -p "$HOME/Developer/dataset-exports"
+
 if ! command -v mise >/dev/null 2>&1; then
   printf '%s\n' 'Skipping OMP plugins. Install Mise, then run chezmoi apply again.' >&2
   exit 0
 fi
 
-mise install oh-my-pi
+mise install oh-my-pi zoxide
 mise reshim
+find "$HOME/Developer" -mindepth 1 -maxdepth 1 -type d \
+  -exec mise exec zoxide -- zoxide add {} +
 mise exec oh-my-pi -- omp plugin install \
   npm:@plannotator/pi-extension@0.27.14 \
   agent-simple-english@0.8.0
