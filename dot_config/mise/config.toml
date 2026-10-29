@@ -1,6 +1,8 @@
 # Shared, work-safe tool configuration.
 [tools]
 "aqua:dlvhdr/diffnav" = "latest"
+"github:duckdb/duckdb" = { version = "latest", matching = "duckdb-cli" }
+"aqua:xo/usql" = "latest"
 bat = "latest"
 betterleaks = "latest"
 bun = "latest"
@@ -20,6 +22,7 @@ node = "latest"
 oh-my-pi = { version = "latest", rename_exe = "omp" }
 python = "latest"
 ripgrep = "latest"
+sqlite = "latest"
 starship = "latest"
 television = "latest"
 "github:joshmedeski/sesh" = "latest"
@@ -35,7 +38,6 @@ zoxide = "latest"
 
 # Heavy, project-local tools. Enable these only in a project configuration.
 # dotnet = "latest"
-# duckdb = "latest"
 # elixir = "latest"
 # erlang = "latest"
 # java = "latest"
