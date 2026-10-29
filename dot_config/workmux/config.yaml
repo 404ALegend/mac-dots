@@ -3,6 +3,7 @@ worktree_dir: .worktrees
 mode: session
 window_prefix: "{project}-"
 agent: omp
+status_format: false
 window_placement: after_current
 merge_strategy: rebase
 merge_keep: false
