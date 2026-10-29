@@ -22,7 +22,7 @@ The repository contains no identities, accounts, SSH configuration, encrypted fi
 
 ## Optional Homebrew bundle
 
-The public Brewfile contains shared desktop tools. Install only entries that company policy permits:
+The public Brewfile contains shared desktop tools. Install only entries that company policy permits. Zsh adds the standard Apple Silicon Homebrew path when Homebrew exists:
 
 ```sh
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}" brew bundle --global
