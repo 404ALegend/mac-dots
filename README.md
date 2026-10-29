@@ -22,9 +22,12 @@ The repository contains no identities, accounts, SSH configuration, encrypted fi
 
 ## Optional Homebrew bundle
 
-The public Brewfile contains shared desktop tools. Install only entries that company policy permits. Zsh adds the standard Apple Silicon Homebrew path when Homebrew exists:
+The public Brewfile contains shared desktop tools. Install only entries that company policy permits. Zsh adds the standard Apple Silicon Homebrew path when Homebrew exists.
+
+Tinycast is the base launcher. Homebrew must trust its upstream tap before the first bundle install:
 
 ```sh
+brew trust --tap abue-ammar/tinycast
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}" brew bundle --global
 ```
 

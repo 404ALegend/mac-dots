@@ -1,4 +1,6 @@
 # Shared optional desktop tools. Use only where company policy permits.
+tap "abue-ammar/tinycast"
+
 brew "displayplacer"
 brew "openssh"
 cask "font-maple-mono-nf"
@@ -9,3 +11,4 @@ cask "obsidian"
 cask "spotify"
 cask "yaak"
 cask "zed"
+cask "tinycast"
