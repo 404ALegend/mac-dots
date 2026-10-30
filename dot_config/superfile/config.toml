@@ -1,0 +1,5 @@
+auto_check_update = false
+
+code_previewer = "bat"
+
+zoxide_support = true
