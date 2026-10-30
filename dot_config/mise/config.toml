@@ -35,6 +35,7 @@ uv = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 zoxide = "latest"
 "npm:@doist/todoist-cli" = "latest"
+superfile = "latest"
 
 # Heavy, project-local tools. Enable these only in a project configuration.
 # dotnet = "latest"
