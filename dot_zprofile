@@ -2,10 +2,8 @@ if [ -x /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR='nvim'
 export VISUAL="$EDITOR"
 export GIT_EDITOR="$EDITOR"
 export SUDO_EDITOR="$EDITOR"
-
-# Keep XDG-aware CLI configuration under ~/.config, including Superfile.
-export XDG_CONFIG_HOME="$HOME/.config"
