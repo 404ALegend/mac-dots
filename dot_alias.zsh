@@ -149,10 +149,6 @@ PY
 
 # Update all
 ua() {
-    echo "==> Authenticating..."
-    sudo -v || return 1
-
-    echo "==> Updating Homebrew..."
     brew update
     brew upgrade --greedy
     brew cleanup
