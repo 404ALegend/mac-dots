@@ -50,7 +50,7 @@ superfile = "latest"
 # zig = "latest"
 
 [settings]
-always_keep_download = false
+download_cache = false
 always_keep_install = false
 trusted_config_paths = ["~/Developer/"]
 verbose = false
