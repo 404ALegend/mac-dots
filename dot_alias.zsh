@@ -44,6 +44,7 @@ alias up='brew update'
 alias zsrc='source "$HOME/.zshrc"'
 alias mu='mise upgrade --bump --global'
 alias cgp='chezmoi git push'
+alias sp='sesh picker'
 
 
 # Alias helpers
