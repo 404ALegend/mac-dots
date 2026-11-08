@@ -35,6 +35,12 @@ path = "~/.local/share/chezmoi-personal/"
 alias = "pdot"
 
 
+[[session]]
+name = "Alter Ego"
+path = "~/alter-ego/"
+alias = "ego"
+
+
 [[wildcard]]
 pattern = "~/Developer/*"
 icon = ""
