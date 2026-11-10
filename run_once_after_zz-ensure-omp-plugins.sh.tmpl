@@ -15,6 +15,6 @@ mise reshim
 find "$HOME/Developer" -mindepth 1 -maxdepth 1 -type d \
   -exec mise exec zoxide -- zoxide add {} +
 mise exec oh-my-pi -- omp plugin install \
-  npm:@plannotator/pi-extension@0.27.14 \
-  agent-simple-english@0.8.0
+  npm:@plannotator/pi-extension \
+  agent-simple-english
 mise exec npm:@yaakapp/cli -- yaak agent install
