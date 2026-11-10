@@ -1,0 +1,27 @@
+[plugin]
+prepend_fetchers = [
+  { url = "*", run = "git", group = "git" },
+  { url = "*/", run = "git", group = "git" },
+]
+prepend_previewers = [
+  { mime = "application/sqlite3", run = 'piper -- sh "$HOME/.config/yazi/sqlite-schema-preview.sh" "$1"' },
+  { url = "*.sqlite", run = 'piper -- sh "$HOME/.config/yazi/sqlite-schema-preview.sh" "$1"' },
+  { url = "*.sqlite3", run = 'piper -- sh "$HOME/.config/yazi/sqlite-schema-preview.sh" "$1"' },
+  { url = "*.db", run = 'piper -- sh "$HOME/.config/yazi/sqlite-schema-preview.sh" "$1"' },
+  { url = "*.csv", run = "duckdb" },
+  { url = "*.tsv", run = "duckdb" },
+  { url = "*.json", run = "duckdb" },
+  { url = "*.parquet", run = "duckdb" },
+  { url = "*.xlsx", run = "duckdb" },
+  { mime = "text/*", run = "bat" },
+  { mime = "application/json", run = "bat" },
+  { mime = "application/x-yaml", run = "bat" },
+  { mime = "application/toml", run = "bat" },
+]
+prepend_preloaders = [
+  { url = "*.csv", run = "duckdb" },
+  { url = "*.tsv", run = "duckdb" },
+  { url = "*.json", run = "duckdb" },
+  { url = "*.parquet", run = "duckdb" },
+  { url = "*.xlsx", run = "duckdb" },
+]

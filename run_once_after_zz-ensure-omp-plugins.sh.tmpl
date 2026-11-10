@@ -10,8 +10,9 @@ if ! command -v mise >/dev/null 2>&1; then
   exit 0
 fi
 
-mise install oh-my-pi zoxide npm:@yaakapp/cli
+mise install oh-my-pi yazi zoxide npm:@yaakapp/cli
 mise reshim
+mise exec yazi -- ya pkg install
 find "$HOME/Developer" -mindepth 1 -maxdepth 1 -type d \
   -exec mise exec zoxide -- zoxide add {} +
 mise exec oh-my-pi -- omp plugin install \

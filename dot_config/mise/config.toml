@@ -36,7 +36,7 @@ yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 zoxide = "latest"
 "npm:@doist/todoist-cli" = "latest"
 "npm:@yaakapp/cli" = "latest"
-superfile = "latest"
+yazi = "latest"
 
 # Heavy, project-local tools. Enable these only in a project configuration.
 # dotnet = "latest"
