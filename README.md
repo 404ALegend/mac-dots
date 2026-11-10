@@ -6,7 +6,7 @@ Portable macOS dotfiles managed by [Chezmoi](https://www.chezmoi.io/).
 
 - Zsh, Git, Starship, and shared Mise tools.
 - Ghostty with Catppuccin Mocha.
-- Tmux, Sesh, and Workmux.
+- Tmux, Sesh, Workmux, and Yazi with data previews.
 - Shared OMP plugins: Plannotator and Agent Simple English.
 
 ## Install
