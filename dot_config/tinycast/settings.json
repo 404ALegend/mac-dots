@@ -83,6 +83,11 @@
         "shortcut": "ctrl+option+shift+cmd+o",
         "alias": null,
         "showInLauncher": true
+      },
+      "net.imput.helium": {
+        "shortcut": "ctrl+option+shift+cmd+b",
+        "alias": null,
+        "showInLauncher": true
       }
     }
   },
