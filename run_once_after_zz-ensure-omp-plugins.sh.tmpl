@@ -2,6 +2,7 @@
 set -eu
 
 # Chezmoi reruns this script only after its contents change.
+# Yazi package manifest: {{ include "dot_config/yazi/package.toml" | sha256sum }}
 
 mkdir -p "$HOME/Developer/dataset-exports"
 
