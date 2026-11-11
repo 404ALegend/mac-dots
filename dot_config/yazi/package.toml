@@ -20,8 +20,8 @@ hash = "d1e0499cae5f3aeb628c267616d4b682"
 
 [[plugin.deps]]
 use = "404ALegend/duckdb"
-rev = "ac41eb5"
-hash = "179d768826ac027cae6ec480347c80da"
+rev = "54af617"
+hash = "439d11468fe2be4ef22b3af69ccaca2d"
 
 [flavor]
 deps = []
