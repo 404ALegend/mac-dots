@@ -4,11 +4,6 @@ rev = "f45ad7d"
 hash = "15328554de94d674330a6d164ed2085d"
 
 [[plugin.deps]]
-use = "wylie102/duckdb"
-rev = "3f8c863"
-hash = "87b9233a74325e95011670ed20bbd0d4"
-
-[[plugin.deps]]
 use = "yazi-rs/plugins:git"
 rev = "1ef5fe0"
 hash = "347cc6b190eb0c2fd60513cc7ae37412"
@@ -22,6 +17,11 @@ hash = "6ea5f37c7f219671ec504cb8311f889d"
 use = "yazi-rs/plugins:piper"
 rev = "1ef5fe0"
 hash = "d1e0499cae5f3aeb628c267616d4b682"
+
+[[plugin.deps]]
+use = "404ALegend/duckdb"
+rev = "506a7cc"
+hash = "4e6a4b7ce242d32e53fcd4ff2272ebd"
 
 [flavor]
 deps = []
