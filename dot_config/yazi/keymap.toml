@@ -7,3 +7,13 @@ desc = "Open Lazygit"
 on = [ "g", "f" ]
 run = 'shell --block -- python3 "$HOME/.config/yazi/ffmpeg-convert.py" %h'
 desc = "Convert media with FFmpeg"
+
+[[mgr.prepend_keymap]]
+on = "H"
+run = "plugin duckdb -1"
+desc = "Scroll DuckDB preview left"
+
+[[mgr.prepend_keymap]]
+on = "L"
+run = "plugin duckdb +1"
+desc = "Scroll DuckDB preview right"
