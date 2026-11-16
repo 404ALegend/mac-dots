@@ -28,17 +28,19 @@ return {
 
 		if Snacks and Snacks.picker then
 			local source = require("noice.integrations.snacks").source
-			local find = source.find
+			local finder = source.finder
 
-			source.find = function()
-				local items = find()
+			source.finder = function()
+				local items = finder()
 				for _, item in ipairs(items) do
 					local message = require("noice.text.format").format(item.message, "details")
-					item.data = table.concat(vim.tbl_map(function(line) return line:content() end, message._lines), "\\n")
+					item.data = table.concat(vim.tbl_map(function(line) return line:content() end, message._lines), "\n")
 				end
 				return items
 			end
 
+
+			Snacks.picker.sources.noice = source
 		end
 	end,
 }
