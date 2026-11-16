@@ -146,7 +146,7 @@
   },
   "dictation": {
     "mode": "toggle",
-    "shortcut": null,
+    "shortcut": "option+v",
     "playsSounds": true,
     "model": "redux",
     "microphone": null,
@@ -183,6 +183,7 @@
   "snippets": {
     "showInLauncher": true,
     "folder": null,
+    "defaultAction": "paste",
     "commands": {}
   },
   "navigation": {
