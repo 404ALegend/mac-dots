@@ -3,7 +3,7 @@ return {
 	event = "InsertEnter",
 	dependencies = "rafamadriz/friendly-snippets",
 
-	version = "v0.*",
+	version = "v1.*",
 
 	opts = {
 		keymap = {
