@@ -47,6 +47,18 @@ alias cgp='chezmoi git push'
 alias tn='sesh picker'
 
 
+# Change to Yazi's final directory on normal exit.
+y() {
+  local tmp cwd exit_status
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")" || return
+  command yazi "$@" --cwd-file="$tmp"
+  exit_status=$?
+  IFS= read -r -d '' cwd < "$tmp"
+  [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+  command rm -f -- "$tmp"
+  return "$exit_status"
+}
+
 # Alias helpers
 _alias_source_file() {
   print -r -- "${CHEZMOI_ALIAS_SOURCE:-$HOME/.local/share/chezmoi/dot_alias.zsh}"
