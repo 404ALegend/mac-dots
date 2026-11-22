@@ -2,7 +2,6 @@
 [tools]
 "aqua:dlvhdr/diffnav" = "latest"
 "github:duckdb/duckdb" = { version = "latest", matching = "duckdb-cli" }
-"aqua:xo/usql" = "latest"
 bat = "latest"
 betterleaks = "latest"
 bun = "latest"
@@ -22,7 +21,6 @@ node = "latest"
 oh-my-pi = { version = "latest", rename_exe = "omp" }
 python = "latest"
 ripgrep = "latest"
-sqlite = "latest"
 starship = "latest"
 television = "latest"
 "github:joshmedeski/sesh" = "latest"
@@ -32,7 +30,6 @@ tree-sitter = "latest"
 uv = "latest"
 "github:raine/workmux" = "latest"
 "github:agavra/tuicr" = "latest"
-yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 zoxide = "latest"
 "npm:@doist/todoist-cli" = "latest"
 "npm:@yaakapp/cli" = "latest"
