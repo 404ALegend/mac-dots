@@ -1,0 +1,54 @@
+theme:
+  dark: dark-catppuccin
+  light: light-catppuccin
+display:
+  showTokenUsage: true
+statusLine:
+  separator: powerline
+  preset: compact
+  sessionAccent: true
+  transparent: true
+  compactThinkingLevel: true
+colorBlindMode: false
+memory:
+  backend: local
+edit:
+  mode: hashline
+symbolPreset: nerd
+modelRoles:
+  smol: openai-codex/gpt-5.6-luna:medium
+  slow: openai-codex/gpt-5.6-sol:max
+  default: openai-codex/gpt-5.6-terra:medium
+  designer: openai-codex/gpt-5.5
+  tiny: openai-codex/gpt-5.4-mini:medium
+  advisor: openai-codex/gpt-5.5:medium
+  plan: openai-codex/gpt-5.5
+  vision: openai-codex/gpt-6-astra:xhigh
+autoResume: false
+defaultThinkingLevel: auto
+setupVersion: 3
+dev:
+  autoqaConsent: denied
+showHardwareCursor: false
+autolearn:
+  enabled: true
+  autoContinue: true
+composer:
+  shape: pi
+spelling:
+  typoDetection: true
+  autocomplete: "off"
+  autocorrect: false
+codexResets:
+  autoRedeem5h: "yes"
+  autoRedeemWeekly: "yes"
+hideThinkingBlock: true
+update:
+  auto: true
+lsp:
+  enabled: true
+task:
+  enableLsp: true
+skills:
+  manualSkills:
+    - simple-english
