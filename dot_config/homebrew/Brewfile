@@ -2,7 +2,7 @@
 tap "abue-ammar/tinycast"
 
 brew "displayplacer"
-brew "openssh"
+brew "poppler"
 cask "font-maple-mono-nf"
 cask "ghostty"
 cask "google-chrome"
