@@ -18,23 +18,24 @@ command = '''
           "agent",
           .session,
           .window_id,
-          "\(.name) · \(if .harness_id != "" then .harness_id else "omp" end) · \(.state) · \(.cwd)"
+          "\(.name) · \(if .harness_id != "" then .harness_id else "omp" end) · \(.state) · \(.cwd)",
+          "🤖"
         ]
       | @tsv
     '
   tuios ls --json 2>/dev/null |
-    jq -r '.[] | ["session", .name, "", "\(.window_count) panes · \(.branch // "no branch")"] | @tsv'
-  printf '%s\t%s\t%s\t%s\n' \
-    project "$HOME/Developer" "" developer \
-    project "$HOME/.local/share/chezmoi" "" "base dotfiles" \
-    project "$HOME/.local/share/chezmoi-personal" "" "personal dotfiles" \
-    project "$HOME/alter-ego" "" "Alter Ego"
+    jq -r '.[] | ["session", .name, "", "\(.window_count) panes · \(.branch // "no branch")", "🖥️"] | @tsv'
+  printf '%s\t%s\t%s\t%s\t%s\n' \
+    project "$HOME/Developer" "" developer "📁" \
+    project "$HOME/.local/share/chezmoi" "" "base dotfiles" "📁" \
+    project "$HOME/.local/share/chezmoi-personal" "" "personal dotfiles" "📁" \
+    project "$HOME/alter-ego" "" "Alter Ego" "📁"
   zoxide query -l | while IFS= read -r directory; do
-    printf 'project\t%s\t\tzoxide\n' "$directory"
+    printf 'project\t%s\t\tzoxide\t📁\n' "$directory"
   done
 } | awk -F '\t' '!seen[$1 FS $2 FS $3]++'
 '''
-display = "{split:\t:0}  {split:\t:1}  ({split:\t:3})"
+display = "{split:\t:4}  {split:\t:1}  ({split:\t:3})"
 no_sort = true
 frecency = false
 
