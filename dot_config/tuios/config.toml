@@ -7,9 +7,9 @@ tiled = true
 [appearance]
 theme = "catppuccin_mocha"
 dockbar_position = "top"
-scroll_column_width = 55
-scroll_column_max = 90
-scroll_column_presets = [50, 67, 90]
+scroll_column_width = 100
+scroll_column_max = 100
+scroll_column_presets = [100]
 
 [keybindings]
 preset = "tmux"
