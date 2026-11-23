@@ -6,6 +6,16 @@ requirements = ["jq", "tuios", "zoxide"]
 [source]
 command = '''
 {
+  omp_title() {
+    local session=$1 window=$2 tty record session_file
+    tty="$(tuios get-window --session "$session" --json "$window" 2>/dev/null | jq -r '.tty // empty')"
+    record="$HOME/.config/omp/agent/terminal-sessions/${tty##*/}"
+    [ -f "$record" ] || return
+    session_file="$(sed -n '2p' "$record")"
+    [ -f "$session_file" ] || return
+    jq -r 'select(.type == "title") | .title' "$session_file" 2>/dev/null | tail -n 1 | tr '\t\n' '  '
+  }
+
   tuios list-agents --all-sessions --all --json 2>/dev/null |
     jq -r '
       .agents[]
@@ -15,16 +25,26 @@ command = '''
           or (.name | test("^omp(-|$)"))
         )
       | [
-          "agent",
           .session,
           .window_id,
-          "\(.name) · \(if .harness_id != "" then .harness_id else "omp" end) · \(.state) · \(.cwd)",
-          "🤖"
+          .name,
+          (if .harness_id != "" then .harness_id else "omp" end),
+          .state,
+          .cwd
         ]
       | @tsv
-    '
+    ' |
+    while IFS=$'\t' read -r session window name harness state cwd; do
+      title="$(omp_title "$session" "$window")"
+      if [ -n "$title" ]; then
+        summary="$title"
+      else
+        summary="$name · $harness · $state · $cwd"
+      fi
+      printf 'agent\t%s\t%s\t%s\t🤖\n' "$session" "$window" "$summary"
+    done
   tuios ls --json 2>/dev/null |
-    jq -r '.[] | ["session", .name, "", "\(.window_count) panes · \(.branch // "no branch")", "🖥️"] | @tsv'
+    jq -r '.[] | ["session", .name, "", "\(.window_count) panes · \(.branch // "no branch")", ""] | @tsv'
   printf '%s\t%s\t%s\t%s\t%s\n' \
     project "$HOME/Developer" "" developer "📁" \
     project "$HOME/.local/share/chezmoi" "" "base dotfiles" "📁" \
