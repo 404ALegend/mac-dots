@@ -20,21 +20,6 @@ chezmoi apply
 
 The repository contains no identities, accounts, SSH configuration, encrypted files, or personal service configuration.
 
-## Migrate tmux sessions to TUIOS
-
-`tuios-migrate-tmux` recreates the current tmux session/window/pane topology as
-detached TUIOS sessions with fresh shells in the panes' current directories.
-It does not transfer live processes, scrollback, agent conversations, or tmux
-split geometry.
-
-```sh
-tuios-migrate-tmux --dry-run
-tuios-migrate-tmux --apply
-```
-
-TUIOS session names cannot contain `/`; the command translates each `/` in a
-tmux session name to `-` and prints the resulting name. Use `--replace` with
-`--apply` only to discard same-named TUIOS sessions and recreate them.
 
 ## Optional Homebrew bundle
 
