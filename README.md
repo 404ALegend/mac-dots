@@ -32,8 +32,9 @@ tuios-migrate-tmux --dry-run
 tuios-migrate-tmux --apply
 ```
 
-Use `--replace` with `--apply` only to discard same-named TUIOS sessions and
-recreate them.
+TUIOS session names cannot contain `/`; the command translates each `/` in a
+tmux session name to `-` and prints the resulting name. Use `--replace` with
+`--apply` only to discard same-named TUIOS sessions and recreate them.
 
 ## Optional Homebrew bundle
 

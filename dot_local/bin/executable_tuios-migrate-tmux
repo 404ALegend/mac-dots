@@ -88,6 +88,8 @@ trap 'rm -f "$session_file" "${pane_file:-}"' EXIT
 
 while IFS="$separator" read -r session_id session_name; do
   [[ -n "$session_id" ]] || continue
+  tuios_session_name="${session_name//\//-}"
+
 
   pane_file="$(mktemp)"
   "${tmux_cmd[@]}" list-panes -s -t "$session_id" \
@@ -98,22 +100,27 @@ while IFS="$separator" read -r session_id session_name; do
   (( workspace_count <= 9 )) || die "$session_name has $workspace_count windows; TUIOS supports at most 9 workspaces"
 
   first_cwd="$(head -n 1 "$pane_file" | cut -d "$separator" -f4-)"
-  printf 'Session: %s (%s workspaces)\n' "$session_name" "$workspace_count"
+  if [[ "$tuios_session_name" == "$session_name" ]]; then
+    printf 'Session: %s (%s workspaces)\n' "$session_name" "$workspace_count"
+  else
+    printf 'Session: %s -> TUIOS: %s (%s workspaces)\n' \
+      "$session_name" "$tuios_session_name" "$workspace_count"
+  fi
   awk -F "$separator" '
     !seen[$1]++ { workspace += 1; printf "  workspace %d: %s\n", workspace, $2 }
     { printf "    shell: %s\n", $4 }
   ' "$pane_file"
 
   if $apply; then
-    if tuios_session_exists "$session_name"; then
+    if tuios_session_exists "$tuios_session_name"; then
       if $replace; then
-        run_tuios kill-session "$session_name"
+        run_tuios kill-session "$tuios_session_name"
       else
-        die "TUIOS session already exists: $session_name (use --replace to recreate it)"
+        die "TUIOS session already exists: $tuios_session_name (use --replace to recreate it)"
       fi
     fi
 
-    run_tuios new "$session_name" --cwd "$first_cwd" --detach
+    run_tuios new "$tuios_session_name" --cwd "$first_cwd" --detach
 
     workspace=0
     previous_window=""
@@ -122,15 +129,15 @@ while IFS="$separator" read -r session_id session_name; do
       if [[ "$tmux_window" != "$previous_window" ]]; then
         workspace=$((workspace + 1))
         previous_window="$tmux_window"
-        run_tuios set-workspace-name "$workspace" "$window_name" --session "$session_name"
+        run_tuios set-workspace-name "$workspace" "$window_name" --session "$tuios_session_name"
       fi
 
       pane_name="$window_name:$pane_index"
       if $first_pane; then
-        run_tuios set-window --session "$session_name" --name "$pane_name"
+        run_tuios set-window --session "$tuios_session_name" --name "$pane_name"
         first_pane=false
       else
-        run_tuios new-window "$pane_name" --session "$session_name" \
+        run_tuios new-window "$pane_name" --session "$tuios_session_name" \
           --workspace "$workspace" --cwd "$pane_cwd" --no-focus
       fi
     done < "$pane_file"
