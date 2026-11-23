@@ -1,20 +1,34 @@
 [metadata]
 name = "tuios-projects"
-description = "Open zoxide directories as TUIOS sessions"
-requirements = ["zoxide", "tuios"]
+description = "Switch to active TUIOS sessions or open Sesh and zoxide projects"
+requirements = ["jq", "tuios", "zoxide"]
 
 [source]
-command = "zoxide query -l"
+command = '''
+{
+  tuios ls --json 2>/dev/null |
+    jq -r '.[] | ["session", .name, "\(.window_count) panes"] | @tsv'
+  printf '%s\t%s\t%s\n' \
+    project "$HOME/Developer" developer \
+    project "$HOME/.local/share/chezmoi" "base dotfiles" \
+    project "$HOME/.local/share/chezmoi-personal" "personal dotfiles" \
+    project "$HOME/alter-ego" "Alter Ego"
+  zoxide query -l | while IFS= read -r directory; do
+    printf 'project\t%s\tzoxide\n' "$directory"
+  done
+} | awk -F '\t' '!seen[$1 FS $2]++'
+'''
+display = "{split:\t:0}  {split:\t:1}  ({split:\t:2})"
 no_sort = true
 frecency = false
 
 [preview]
-command = "eza -la --color=always '{}'"
+command = "case '{split:\t:0}' in session) tuios list-windows --session '{split:\t:1}' --json | jq ;; project) eza -la --color=always '{split:\t:1}' ;; esac"
 
 [keybindings]
 enter = "actions:open"
 
 [actions.open]
-description = "Switch to or create a TUIOS session"
-command = "tuios switch-session --create --cwd '{}' \"$(basename '{}')\""
+description = "Switch to the selected TUIOS session or project"
+command = "case '{split:\t:0}' in session) tuios switch-session '{split:\t:1}' ;; project) tuios switch-session --create --cwd '{split:\t:1}' \"$(basename '{split:\t:1}')\" ;; esac"
 mode = "execute"
