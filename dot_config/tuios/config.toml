@@ -1,0 +1,27 @@
+# TUIOS keeps project sessions alive; Television selects projects for them.
+
+[startup]
+layout = "scrolling"
+tiled = true
+
+[appearance]
+theme = "catppuccin_mocha"
+dockbar_position = "top"
+scroll_column_width = 55
+scroll_column_max = 90
+scroll_column_presets = [50, 67, 90]
+
+[keybindings]
+preset = "tmux"
+
+[keybindings.prefix_mode]
+prev_agent = []
+
+[[keybindings.command]]
+name = "project-picker"
+key = "prefix+K"
+type = "popup"
+command = "tv tuios-projects"
+description = "Open a project"
+width = "80%"
+height = "90%"
