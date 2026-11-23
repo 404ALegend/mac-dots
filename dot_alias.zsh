@@ -44,7 +44,8 @@ alias up='brew update'
 alias zsrc='source "$HOME/.zshrc"'
 alias mu='mise upgrade --bump --global'
 alias cgp='chezmoi git push'
-alias tn='sesh picker'
+alias tn='tv tuios-projects'
+alias sn='sesh picker'
 
 
 # Change to Yazi's final directory on normal exit.
