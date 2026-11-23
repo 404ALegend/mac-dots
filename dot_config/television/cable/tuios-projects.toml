@@ -1,34 +1,50 @@
 [metadata]
 name = "tuios-projects"
-description = "Switch to active TUIOS sessions or open Sesh and zoxide projects"
+description = "Focus active agent panes, switch TUIOS sessions, or open project directories"
 requirements = ["jq", "tuios", "zoxide"]
 
 [source]
 command = '''
 {
+  tuios list-agents --all-sessions --all --json 2>/dev/null |
+    jq -r '
+      .agents[]
+      | select(
+          .harness_id != ""
+          or .agent_session_id != ""
+          or (.name | test("^omp(-|$)"))
+        )
+      | [
+          "agent",
+          .session,
+          .window_id,
+          "\(.name) · \(if .harness_id != "" then .harness_id else "omp" end) · \(.state) · \(.cwd)"
+        ]
+      | @tsv
+    '
   tuios ls --json 2>/dev/null |
-    jq -r '.[] | ["session", .name, "\(.window_count) panes"] | @tsv'
-  printf '%s\t%s\t%s\n' \
-    project "$HOME/Developer" developer \
-    project "$HOME/.local/share/chezmoi" "base dotfiles" \
-    project "$HOME/.local/share/chezmoi-personal" "personal dotfiles" \
-    project "$HOME/alter-ego" "Alter Ego"
+    jq -r '.[] | ["session", .name, "", "\(.window_count) panes · \(.branch // "no branch")"] | @tsv'
+  printf '%s\t%s\t%s\t%s\n' \
+    project "$HOME/Developer" "" developer \
+    project "$HOME/.local/share/chezmoi" "" "base dotfiles" \
+    project "$HOME/.local/share/chezmoi-personal" "" "personal dotfiles" \
+    project "$HOME/alter-ego" "" "Alter Ego"
   zoxide query -l | while IFS= read -r directory; do
-    printf 'project\t%s\tzoxide\n' "$directory"
+    printf 'project\t%s\t\tzoxide\n' "$directory"
   done
-} | awk -F '\t' '!seen[$1 FS $2]++'
+} | awk -F '\t' '!seen[$1 FS $2 FS $3]++'
 '''
-display = "{split:\t:0}  {split:\t:1}  ({split:\t:2})"
+display = "{split:\t:0}  {split:\t:1}  ({split:\t:3})"
 no_sort = true
 frecency = false
 
 [preview]
-command = "case '{split:\t:0}' in session) tuios list-windows --session '{split:\t:1}' --json | jq ;; project) eza -la --color=always '{split:\t:1}' ;; esac"
+command = "case '{split:\t:0}' in agent) tuios get-window --session '{split:\t:1}' --json '{split:\t:2}' | jq ;; session) tuios list-windows --session '{split:\t:1}' --json | jq ;; project) eza -la --color=always '{split:\t:1}' ;; esac"
 
 [keybindings]
 enter = "actions:open"
 
 [actions.open]
-description = "Switch to the selected TUIOS session or project"
-command = "case '{split:\t:0}' in session) tuios switch-session '{split:\t:1}' ;; project) tuios switch-session --create --cwd '{split:\t:1}' \"$(basename '{split:\t:1}')\" ;; esac"
+description = "Focus the selected agent pane, switch sessions, or open a project"
+command = "case '{split:\t:0}' in agent) tuios switch-session '{split:\t:1}' && tuios focus-window --session '{split:\t:1}' '{split:\t:2}' ;; session) tuios switch-session '{split:\t:1}' ;; project) tuios switch-session --create --cwd '{split:\t:1}' \"$(basename '{split:\t:1}')\" ;; esac"
 mode = "execute"
