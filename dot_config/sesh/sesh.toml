@@ -6,6 +6,7 @@ dir_length = 2
 separator_aware = true
 blacklist = ["^scratch$", "^_"]
 sort_order = ["tmux", ["config", "zoxide"]]
+multiplexer = "tuios"
 
 [tui]
 show_icons = true
