@@ -1,4 +1,4 @@
-# TUIOS keeps project sessions alive; Television selects projects for them.
+# TUIOS keeps sessions alive; Sesh selects projects and sessions.
 
 [startup]
 layout = "scrolling"
@@ -21,7 +21,7 @@ prev_agent = []
 name = "project-picker"
 key = "prefix+K"
 type = "popup"
-command = "tv tuios-projects"
+command = "sesh picker"
 description = "Open a project"
 width = "80%"
 height = "90%"
