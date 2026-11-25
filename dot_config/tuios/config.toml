@@ -10,6 +10,18 @@ dockbar_position = "top"
 scroll_column_width = 100
 scroll_column_max = 100
 scroll_column_presets = [100]
+border_style = "rounded"
+frame_panels = false
+pane_overlays = true
+window_title_position = "top"
+window_title_style = "plain"
+window_title_align = "right"
+hide_window_buttons = false
+window_button_style = "dots"
+hide_scrollbar = false
+copy_search_max_matches = 1000
+dim_foreground = true
+zen_mode = "disabled"
 
 [keybindings]
 preset = "tmux"
@@ -25,3 +37,28 @@ command = "sesh picker"
 description = "Open a project"
 width = "80%"
 height = "90%"
+
+[appearance.sidebar]
+enabled = false
+header_case = "lowercase"
+row_style = "bar"
+header_style = "auto"
+
+[appearance.scrollbar]
+style = "thin"
+
+[appearance.sidebar.left]
+enabled = false
+width = 24
+
+[appearance.sidebar.right]
+enabled = false
+
+[spotlight]
+enabled = false
+
+[motion]
+scroll = "on"
+
+[panes]
+navigator_layout = "cards"

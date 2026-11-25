@@ -18,12 +18,11 @@ symbolPreset: nerd
 modelRoles:
   smol: openai-codex/gpt-5.6-luna:medium
   slow: openai-codex/gpt-5.6-sol:max
-  default: openai-codex/gpt-5.6-terra:medium
+  default: openai-codex/gpt-6.2-astra:medium
   designer: openai-codex/gpt-5.5
   tiny: openai-codex/gpt-5.4-mini:medium
   advisor: openai-codex/gpt-5.5:medium
   plan: openai-codex/gpt-5.5
-  vision: openai-codex/gpt-6-astra:xhigh
 autoResume: false
 defaultThinkingLevel: auto
 setupVersion: 3
