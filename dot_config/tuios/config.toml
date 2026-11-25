@@ -1,26 +1,40 @@
 # TUIOS keeps sessions alive; Sesh selects projects and sessions.
-
 [startup]
 layout = "scrolling"
+open_default_window = true
 tiled = true
 
 [appearance]
 theme = "catppuccin_mocha"
-dockbar_position = "top"
+dockbar_position = "bottom"
+dock_compact = true
+dock_prefix_indicator = "badge" # need to figure out what this one is
+dock_mode_pill = "input"
+dock_mode_icon_window = "WIN:"
+dock_mode_icon_terminal = "TERM:"
+dock_mode_split_letter = true
 scroll_column_width = 100
 scroll_column_max = 100
 scroll_column_presets = [100]
-border_style = "rounded"
+niri_scroll_cells = 16
+border_style = "normal"
+shared_borders = true
+gap = 0
+dock_pill_caps = false 
 frame_panels = false
 pane_overlays = true
-window_title_position = "top"
+window_title_position = "right"
 window_title_style = "plain"
 window_title_align = "right"
-hide_window_buttons = false
+hide_window_buttons = true
 window_button_style = "dots"
 hide_scrollbar = false
 copy_search_max_matches = 1000
 dim_foreground = true
+dim_unfocused = 65 
+dim_multifocus = true
+zoom_size = 100
+animation_speed = 100
 zen_mode = "disabled"
 
 [keybindings]
