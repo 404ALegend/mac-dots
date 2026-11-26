@@ -23,7 +23,7 @@ python = "latest"
 ripgrep = "latest"
 starship = "latest"
 television = "latest"
-"github:404ALegend/sesh" = "v2.30.1-tuios.2"
+"github:404ALegend/sesh" = { version = "latest", prerelease = true }
 tlrc = "latest"
 tmux = "latest"
  "github:Gaurav-Gosain/tuios" = "latest"
