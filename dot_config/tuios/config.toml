@@ -7,9 +7,12 @@ layout = "scrolling"
 
 [appearance]
 theme = "catppuccin_mocha"
-scroll_column_max = 90
+scroll_column_max = 96
 session_border = false
 gap = 0
+dim_unfocused = 0
+scroll_column_width = 95
+auto_enter_terminal_on_focus = "all"
 
 [keybindings]
 preset = "tmux"
@@ -25,3 +28,6 @@ enabled = false
 
 [appearance.scrollbar]
 style = "track"
+
+[appearance.sidebar.left]
+enabled = false
