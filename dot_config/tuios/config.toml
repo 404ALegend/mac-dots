@@ -2,9 +2,14 @@
 [startup]
 tiled = true
 daemon = true
+start_in_terminal_mode = true
+layout = "scrolling"
 
 [appearance]
 theme = "catppuccin_mocha"
+scroll_column_max = 90
+session_border = false
+gap = 0
 
 [keybindings]
 preset = "tmux"
@@ -12,3 +17,11 @@ preset = "tmux"
 [spotlight]
 enabled = false
 
+[appearance.sidebar]
+enabled = false
+
+[appearance.sidebar.right]
+enabled = false
+
+[appearance.scrollbar]
+style = "track"
