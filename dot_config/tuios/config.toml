@@ -1,6 +1,7 @@
 # TUIOS keeps sessions alive; Sesh selects projects and sessions.
 [startup]
 tiled = true
+daemon = true
 
 [appearance]
 theme = "catppuccin_mocha"
