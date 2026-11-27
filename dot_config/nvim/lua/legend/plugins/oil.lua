@@ -17,6 +17,10 @@ return {
 			padding = 5,
 		},
 		keymaps = {
+			["<C-h>"] = false,
+			["<C-l>"] = false,
+			["<C-x>"] = { "actions.select", opts = { horizontal = true } },
+			["gR"] = "actions.refresh",
 			["q"] = { "actions.close", mode = "n" },
 		},
 	},
