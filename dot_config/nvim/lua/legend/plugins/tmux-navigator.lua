@@ -1,6 +1,6 @@
 return {
 	"christoomey/vim-tmux-navigator",
-	enabled = true,
+	enabled = vim.env.TUIOS_ENV ~= "1",
 	keys = {
 		{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
 		{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },

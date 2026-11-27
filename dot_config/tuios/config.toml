@@ -18,6 +18,7 @@ gap = 0
 dim_unfocused = 50
 scroll_column_width = 96
 auto_enter_terminal_on_focus = "all"
+nvim_navigation = true
 dock_pill_caps = true
 dock_prefix_indicator = "badge"
 dock_mode_pill = "input"
