@@ -4,6 +4,7 @@ tiled = true
 daemon = true
 start_in_terminal_mode = true
 layout = "scrolling"
+open_default_window = true
 
 [appearance]
 theme = "catppuccin_mocha"
@@ -11,8 +12,16 @@ scroll_column_max = 96
 session_border = false
 gap = 0
 dim_unfocused = 0
-scroll_column_width = 95
+scroll_column_width = 96
 auto_enter_terminal_on_focus = "all"
+dock_pill_caps = true
+dock_prefix_indicator = "badge"
+dock_mode_pill = "input"
+dock_mode_split_letter = false
+dock_compact = true
+dockbar_position = "top"
+dock_workspace_tooltip = true
+calm = false
 
 [keybindings]
 preset = "tmux"
@@ -22,6 +31,7 @@ enabled = false
 
 [appearance.sidebar]
 enabled = false
+files_style = "list"
 
 [appearance.sidebar.right]
 enabled = false
@@ -31,3 +41,11 @@ style = "track"
 
 [appearance.sidebar.left]
 enabled = false
+
+[dock]
+right = ["notifications", "copy-help"]
+left = ["mode", "workspaces"]
+center = ["windows"]
+
+[motion]
+workspace = "slide"

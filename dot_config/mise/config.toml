@@ -34,6 +34,7 @@ zoxide = "latest"
 yazi = "latest"
 "aqua:ip7z/7zip" = "latest"
 "npm:@todoist/cli" = "latest"
+tuios = "latest"
 
 # Heavy, project-local tools. Enable these only in a project configuration.
 # dotnet = "latest"
