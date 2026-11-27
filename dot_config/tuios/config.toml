@@ -22,6 +22,10 @@ dock_compact = true
 dockbar_position = "top"
 dock_workspace_tooltip = true
 calm = false
+window_title_position = "top"
+window_button_position = "left"
+window_button_style = "dots"
+window_title_align = "center"
 
 [keybindings]
 preset = "tmux"
