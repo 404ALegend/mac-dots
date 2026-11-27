@@ -37,6 +37,9 @@ tiling_scheme = "spiral"
 border_gradient_angle = 45
 border_style = "rounded"
 session_colors = true
+zoom_size = 100
+zoom_borderless = false
+window_button_zoom = true
 
 [keybindings]
 preset = "tmux"
