@@ -1,7 +1,5 @@
 # TUIOS keeps sessions alive; Sesh selects projects and sessions.
 [startup]
-layout = "scrolling"
-open_default_window = true
 tiled = true
 
 [appearance]
