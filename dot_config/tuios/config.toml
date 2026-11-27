@@ -73,8 +73,8 @@ center = ["windows"]
 [motion]
 workspace = "slide"
 
-[keybindings.prefix_mode]
-focus_up = ["up", "ctrl+k"]
-focus_down = ["down", "ctrl+j"]
-terminal_focus_left = ["left", "ctrl+h"]
-terminal_focus_right = ["right", "ctrl+l"]
+[keybindings.terminal_mode]
+terminal_focus_left = ["ctrl+h"]
+terminal_focus_down = ["ctrl+j"]
+terminal_focus_up = ["ctrl+k"]
+terminal_focus_right = ["ctrl+l"]
