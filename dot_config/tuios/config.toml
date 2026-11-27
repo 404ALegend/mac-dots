@@ -44,6 +44,12 @@ window_button_zoom = true
 [keybindings]
 preset = "tmux"
 
+[[keybindings.command]]
+key = "prefix+alt+o"
+type = "pane"
+command = "omp"
+description = "Open OMP split"
+
 [spotlight]
 enabled = false
 
