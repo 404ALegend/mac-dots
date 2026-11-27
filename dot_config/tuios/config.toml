@@ -10,5 +10,5 @@ theme = "catppuccin_mocha"
 preset = "tmux"
 
 [spotlight]
-enabled = true 
+enabled = false
 
