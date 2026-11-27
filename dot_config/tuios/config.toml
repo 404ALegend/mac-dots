@@ -8,39 +8,3 @@ theme = "catppuccin_mocha"
 [keybindings]
 preset = "tmux"
 
-[keybindings.prefix_mode]
-prev_agent = []
-
-[[keybindings.command]]
-name = "project-picker"
-key = "prefix+K"
-type = "popup"
-command = "sesh picker"
-description = "Open a project"
-width = "80%"
-height = "90%"
-
-[appearance.sidebar]
-enabled = false
-header_case = "lowercase"
-row_style = "bar"
-header_style = "auto"
-
-[appearance.scrollbar]
-style = "thin"
-
-[appearance.sidebar.left]
-enabled = false
-width = 24
-
-[appearance.sidebar.right]
-enabled = false
-
-[spotlight]
-enabled = false
-
-[motion]
-scroll = "on"
-
-[panes]
-navigator_layout = "cards"
