@@ -4,10 +4,6 @@ tiled = true
 
 [appearance]
 theme = "catppuccin_mocha"
-dockbar_position = "top"
-dock_compact = true
-dock_prefix_indicator = "badge" # need to figure out what this one is
-dock_mode_pill = "input"
 
 [keybindings]
 preset = "tmux"
