@@ -9,3 +9,6 @@ theme = "catppuccin_mocha"
 [keybindings]
 preset = "tmux"
 
+[spotlight]
+
+
