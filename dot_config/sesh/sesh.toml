@@ -28,6 +28,7 @@ alias = "dev"
 name = "base dotfiles"
 path = "~/.local/share/chezmoi"
 alias = "dot"
+startup_command = "tuios split-window right --cwd \"$PWD\" --name omp -- omp"
 
 
 [[session]]
