@@ -8,10 +8,14 @@ open_default_window = true
 
 [appearance]
 theme = "catppuccin_mocha"
+background = "theme"
+border_focused_color = "#89b4fa"
+border_unfocused_color = "#585b70"
+overlay_border_color = "#cba6f7"
 scroll_column_max = 96
 session_border = false
 gap = 0
-dim_unfocused = 0
+dim_unfocused = 50
 scroll_column_width = 96
 auto_enter_terminal_on_focus = "all"
 dock_pill_caps = true
@@ -26,6 +30,12 @@ window_title_position = "top"
 window_button_position = "left"
 window_button_style = "dots"
 window_title_align = "center"
+panel_padding = 2
+zen_mode = "disabled"
+tiling_scheme = "spiral"
+border_gradient_angle = 45
+border_style = "rounded"
+session_colors = true
 
 [keybindings]
 preset = "tmux"
@@ -45,6 +55,15 @@ style = "track"
 
 [appearance.sidebar.left]
 enabled = false
+
+[appearance.selection]
+bg = "#45475a"
+cursor_bg = "#f5e0dc"
+cursor_fg = "#1e1e2e"
+search_bg = "#f9e2af"
+search_fg = "#1e1e2e"
+match_bg = "#a6e3a1"
+match_fg = "#1e1e2e"
 
 [dock]
 right = ["notifications", "copy-help"]
